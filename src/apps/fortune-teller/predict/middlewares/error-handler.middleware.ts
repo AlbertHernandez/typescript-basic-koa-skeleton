@@ -1,25 +1,33 @@
 import httpStatus from "http-status";
 import Koa from "koa";
 import { BaseError } from "../../../../contexts/shared/domain/errors/base-error";
+import { ErrorHandler } from "../../../../contexts/shared/domain/error-handler";
 
 const INTERNAL_SERVER_ERROR = "Internal Server Error";
 
 export const errorHandler = async (ctx: Koa.Context, next: Koa.Next) => {
   try {
-    await next().catch((error: Error | BaseError) => {
+    await next().catch(async (error: Error | BaseError) => {
+      const errorHandler: ErrorHandler =
+        ctx.state.container.resolve("errorHandler");
+
+      await errorHandler.run(error);
+
       if (!(error instanceof BaseError)) {
         throw error;
       }
 
       const isClientError = Boolean(error.status.toString().startsWith("4"));
-      ctx.status = isClientError
-        ? error.status
-        : httpStatus.INTERNAL_SERVER_ERROR;
 
+      if (!isClientError) {
+        throw error;
+      }
+
+      ctx.status = error.status;
       ctx.body = {
         error: {
-          message: isClientError ? error.message : INTERNAL_SERVER_ERROR,
-          meta: isClientError ? error.meta : undefined,
+          message: error.message,
+          meta: error.meta,
         },
       };
     });
