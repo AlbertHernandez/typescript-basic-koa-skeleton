@@ -2,7 +2,6 @@ import { QueryHandler } from "../../../../shared/domain/query-handler";
 import { ObtainPredictionQuery } from "./obtain-prediction-query";
 import { ObtainPredictionResponse } from "./obtain-prediction-response";
 import { FortuneTellerPredictObtainer } from "./fortune-teller-predict-obtainer";
-import { Query } from "../../../../shared/domain/query";
 
 export class ObtainPredictionQueryHandler
   implements QueryHandler<ObtainPredictionQuery, ObtainPredictionResponse>
@@ -16,7 +15,7 @@ export class ObtainPredictionQueryHandler
       dependencies.fortuneTellerPredictObtainer;
   }
 
-  subscribedTo(): Query {
+  subscribedTo(): ObtainPredictionQuery {
     return ObtainPredictionQuery;
   }
 

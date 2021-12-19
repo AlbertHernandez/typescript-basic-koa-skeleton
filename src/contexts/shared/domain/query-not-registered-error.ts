@@ -1,4 +1,4 @@
-import { Query } from "./Query";
+import { Query } from "./query";
 import { BaseError } from "./errors/base-error";
 
 export class QueryNotRegisteredError extends BaseError {
