@@ -10,6 +10,7 @@ import Router from "koa-router";
 import { registerRoutes } from "./routes";
 import { scopePerRequest } from "./middlewares/scope-per-request.middleware";
 import { scopeLoggerPerRequest } from "./middlewares/scope-logger-per-request.middleware";
+import { errorHandler } from "./middlewares/error-handler.middleware";
 
 export class Server {
   private koa: Koa;
@@ -29,6 +30,7 @@ export class Server {
     registerRoutes(router);
 
     this.koa.use(responseTime());
+    this.koa.use(errorHandler);
     this.koa.use(requestId());
     this.koa.use(bodyParser());
     this.koa.use(helmet());
