@@ -1,5 +1,8 @@
 import Koa from "koa";
 import http from "http";
+import requestId from "koa-requestid";
+import bodyParser from "koa-bodyparser";
+import helmet from "koa-helmet";
 import { Logger } from "../../../contexts/shared/domain/logger";
 import { container } from "./dependency-injection";
 import Router from "koa-router";
@@ -21,6 +24,10 @@ export class Server {
     });
 
     registerRoutes(router);
+
+    this.koa.use(requestId());
+    this.koa.use(bodyParser());
+    this.koa.use(helmet());
 
     this.koa.use(router.middleware());
   }

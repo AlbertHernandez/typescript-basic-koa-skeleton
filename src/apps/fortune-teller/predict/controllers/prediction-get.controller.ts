@@ -14,6 +14,6 @@ export default class PredictionGetController implements Controller {
 
   async run(ctx: Koa.Context) {
     const prediction = await this.fortuneTellerPredictObtainer.run();
-    ctx.body = prediction;
+    ctx.body = { prediction };
   }
 }
