@@ -1,22 +1,22 @@
 export class BaseError extends Error {
   code;
   meta?;
-  status;
+  status?;
   isOperational;
 
-  constructor(
-    message: string,
-    status: number,
-    isOperational: boolean,
-    code?: string,
-    meta?: Record<string, unknown>
-  ) {
-    super(message);
+  constructor(dependencies: {
+    message: string;
+    isOperational?: boolean;
+    status?: number;
+    code?: string;
+    meta?: Record<string, unknown>;
+  }) {
+    super(dependencies.message);
 
-    this.status = status;
-    this.isOperational = isOperational;
-    this.code = code ?? "error.unexpected";
-    this.meta = meta;
+    this.status = dependencies.status;
+    this.isOperational = dependencies.isOperational || false;
+    this.code = dependencies.code ?? "error.unexpected";
+    this.meta = dependencies.meta;
     this.name = this.constructor.name;
 
     Error.captureStackTrace(this, this.constructor);

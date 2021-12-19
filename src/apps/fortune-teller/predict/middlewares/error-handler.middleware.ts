@@ -17,13 +17,13 @@ export const errorHandler = async (ctx: Koa.Context, next: Koa.Next) => {
         throw error;
       }
 
-      const isClientError = Boolean(error.status.toString().startsWith("4"));
+      const isClientError = Boolean(error.status?.toString().startsWith("4"));
 
       if (!isClientError) {
         throw error;
       }
 
-      ctx.status = error.status;
+      ctx.status = error.status || httpStatus.INTERNAL_SERVER_ERROR;
       ctx.body = {
         error: {
           message: error.message,
