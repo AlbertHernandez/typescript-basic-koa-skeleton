@@ -4,9 +4,10 @@ import { Level, Logger, LogMessage } from "../domain/logger";
 export class PinoLogger implements Logger {
   private readonly logger: PinoLoggerType;
 
-  constructor(dependencies: { level?: Level } = {}) {
+  constructor(dependencies: { level?: Level; isEnabled?: boolean } = {}) {
     this.logger = pino({
-      level: dependencies.level || "debug",
+      enabled: dependencies.isEnabled,
+      level: dependencies.level || "info",
       messageKey: "message",
       base: null,
     });

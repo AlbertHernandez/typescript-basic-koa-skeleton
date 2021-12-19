@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/index.js",
   "scripts": {
-    "dev:fortune-teller": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules src/apps/fortune-teller/predict/start.ts | pino-pretty -c --messageKey message --translateTime SYS:standard",
+    "dev:fortune-teller": "ts-node-dev --ignore-watch node_modules src/apps/fortune-teller/predict/start.ts | pino-pretty -c --messageKey message --translateTime SYS:standard",
     "test": "npm run test:unit && npm run test:integration",
     "test:unit": "NODE_ENV=test jest tests/contexts",
     "test:integration": "NODE_ENV=test jest tests/apps",
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
+    "@types/convict": "^6.1.1",
     "@types/glob": "^7.2.0",
     "@types/jest": "^27.0.3",
     "@types/koa": "^2.13.4",
@@ -67,6 +68,8 @@
   },
   "dependencies": {
     "awilix": "^6.0.0",
+    "convict": "6.0.1",
+    "dotenv": "^10.0.0",
     "http-status": "^1.5.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

@@ -13,6 +13,7 @@ import { scopeLoggerPerRequest } from "./middlewares/scope-logger-per-request.mi
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { logRequestResponse } from "./middlewares/log-request-response.middleware";
 import { registerRequestContext } from "./middlewares/register-request-context.middleware";
+import { config } from "../../../contexts/fortune-teller/shared/infrastructure/config";
 
 export class Server {
   private koa: Koa;
@@ -47,8 +48,9 @@ export class Server {
   async listen(): Promise<void> {
     return new Promise((resolve) => {
       this.httpServer = this.koa.listen(this.port, () => {
+        const env = config.get("env");
         this.logger.info(
-          `Fortune Teller Backend App is running at http://localhost:${this.port}`
+          `Fortune Teller Backend App is running at http://localhost:${this.port} in ${env} mode`
         );
         this.logger.info("  Press CTRL-C to stop\n");
         resolve();
