@@ -12,6 +12,7 @@ import { scopePerRequest } from "./middlewares/scope-per-request.middleware";
 import { scopeLoggerPerRequest } from "./middlewares/scope-logger-per-request.middleware";
 import { errorHandler } from "./middlewares/error-handler.middleware";
 import { logRequestResponse } from "./middlewares/log-request-response.middleware";
+import { registerRequestContext } from "./middlewares/register-request-context.middleware";
 
 export class Server {
   private koa: Koa;
@@ -30,12 +31,13 @@ export class Server {
 
     registerRoutes(router);
 
-    this.koa.use(responseTime());
     this.koa.use(errorHandler);
+    this.koa.use(responseTime());
     this.koa.use(requestId());
     this.koa.use(bodyParser());
     this.koa.use(helmet());
     this.koa.use(scopePerRequest);
+    this.koa.use(registerRequestContext);
     this.koa.use(scopeLoggerPerRequest);
     this.koa.use(logRequestResponse);
 

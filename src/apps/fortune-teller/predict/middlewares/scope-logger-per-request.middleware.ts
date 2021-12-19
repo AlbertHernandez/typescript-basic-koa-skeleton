@@ -8,11 +8,9 @@ export const scopeLoggerPerRequest = async (
 ) => {
   const scopedContainer: Awilix.AwilixContainer = ctx.state.container;
   const logger = scopedContainer.resolve<Logger>("logger");
-  const requestId = ctx.state.id;
+  const requestContext = scopedContainer.resolve("requestContext");
 
-  const scopedLogger = logger.child({
-    requestId,
-  });
+  const scopedLogger = logger.child(requestContext);
 
   scopedContainer.register({
     logger: Awilix.asValue(scopedLogger),
