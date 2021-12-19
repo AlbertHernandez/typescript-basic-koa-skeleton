@@ -1,6 +1,6 @@
 import { Server } from "./server";
 
-export class PredictBackendApp {
+export class FortuneTellerBackendApp {
   private server?: Server;
 
   async start() {
@@ -17,7 +17,9 @@ export class PredictBackendApp {
 
   get port(): number {
     if (!this.server) {
-      throw new Error("Predict backend application has not been started");
+      throw new Error(
+        "Fortune Teller backend application has not been started"
+      );
     }
     return this.server.port;
   }

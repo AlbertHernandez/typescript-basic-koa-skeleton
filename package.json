@@ -5,8 +5,9 @@
   "main": "src/index.js",
   "scripts": {
     "dev:fortune-teller": "NODE_ENV=dev ts-node-dev --ignore-watch node_modules src/apps/fortune-teller/predict/start.ts | pino-pretty -c --messageKey message --translateTime SYS:standard",
-    "test": "npm run test:unit",
+    "test": "npm run test:unit && npm run test:integration",
     "test:unit": "NODE_ENV=test jest tests/contexts",
+    "test:integration": "NODE_ENV=test jest tests/apps",
     "prepare": "husky install",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.ts",
     "lint:fix": "npm run lint -- --fix",
@@ -41,6 +42,7 @@
     "@types/koa": "^2.13.4",
     "@types/koa-bodyparser": "^4.3.4",
     "@types/koa-router": "^7.4.4",
+    "@types/supertest": "^2.0.11",
     "@typescript-eslint/eslint-plugin": "^5.7.0",
     "@typescript-eslint/parser": "^5.7.0",
     "eslint": "^8.5.0",
@@ -52,6 +54,7 @@
     "pino-pretty": "^7.3.0",
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
+    "supertest": "^6.1.6",
     "ts-jest": "^27.1.2",
     "ts-node-dev": "^1.1.8",
     "typescript": "^4.5.4"

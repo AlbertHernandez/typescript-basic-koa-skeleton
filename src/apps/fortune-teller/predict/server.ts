@@ -29,7 +29,7 @@ export class Server {
     return new Promise((resolve) => {
       this.httpServer = this.koa.listen(this.port, () => {
         this.logger.info(
-          `Predict Backend App is running at http://localhost:${this.port}`
+          `Fortune Teller Backend App is running at http://localhost:${this.port}`
         );
         this.logger.info("  Press CTRL-C to stop\n");
         resolve();

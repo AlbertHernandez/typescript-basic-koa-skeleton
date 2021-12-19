@@ -1,7 +1,7 @@
-import { PredictBackendApp } from "./predict-backend-app";
+import { FortuneTellerBackendApp } from "./fortune-teller-backend-app";
 
 try {
-  new PredictBackendApp().start().catch(handleError);
+  new FortuneTellerBackendApp().start().catch(handleError);
 } catch (e) {
   handleError(e);
 }
