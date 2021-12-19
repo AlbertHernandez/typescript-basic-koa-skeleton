@@ -2,7 +2,7 @@
 <h3 align="center">Typescript Basic Koa Skeleton</h3>
 
 <p align="center">
-    <a href="https://github.com/AlbertHernandez/typescript-library-skeleton/actions/workflows/nodejs.yml?branch=main"><img src="https://github.com/AlbertHernandez/typescript-library-skeleton/actions/workflows/nodejs.yml/badge.svg?branch=main" alt="nodejs"/></a>
+    <a href="https://github.com/AlbertHernandez/typescript-basic-koa-skeleton/actions/workflows/nodejs.yml?branch=main"><img src="https://github.com/AlbertHernandez/typescript-basic-koa-skeleton/actions/workflows/nodejs.yml/badge.svg?branch=main" alt="nodejs"/></a>
 </p>
 
 <p align="center">
@@ -28,16 +28,6 @@ nvm use
 npm install npm@8.3.0 -g
 npm install
 ```
-
-## Playground
-
-This library offers a playground where we can play with the functions that we are developing
-
-```bash
-npm run playground
-```
-
-In case you wan
 
 ## Building
 
@@ -69,4 +59,4 @@ npm run lint:fix
 
 ## Contributing
 
-Contributions welcome! See the [Contributing Guide](https://github.com/AlbertHernandez/typescript-library-skeleton/blob/main/CONTRIBUTING.md).
+Contributions welcome! See the [Contributing Guide](https://github.com/AlbertHernandez/typescript-basic-koa-skeleton/blob/main/CONTRIBUTING.md).
