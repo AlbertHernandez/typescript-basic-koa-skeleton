@@ -66,7 +66,6 @@
   },
   "dependencies": {
     "awilix": "^6.0.0",
-    "camelcase": "^6.2.1",
     "http-status": "^1.5.0",
     "koa": "^2.13.4",
     "koa-bodyparser": "^4.3.0",

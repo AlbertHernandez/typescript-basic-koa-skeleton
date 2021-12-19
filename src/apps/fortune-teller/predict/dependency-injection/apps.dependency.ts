@@ -1,6 +1,5 @@
 import * as Awilix from "awilix";
 import glob from "glob";
-import camelcase from "camelcase";
 
 const registerController = (
   routePath: string,
@@ -10,7 +9,7 @@ const registerController = (
   const route = require(routePath);
   const className = route.default;
   container.register({
-    [camelcase(className.name)]: Awilix.asClass(className),
+    [className.name]: Awilix.asClass(className),
   });
 };
 
