@@ -1,8 +1,8 @@
-import { FortuneTellerPredictObtainer } from "../../../../../../src/contexts/fortune-teller/predict/application/create/fortune-teller-predict-obtainer";
+import { FortuneTellerPredictObtainerMother } from "../../domain/fortune-teller-predict-obtainer-mother";
 
 describe("FortuneTellerPredictObtainer", () => {
   it("get a prediction", async () => {
-    const applicationService = new FortuneTellerPredictObtainer();
+    const applicationService = FortuneTellerPredictObtainerMother.create();
 
     const prediction = await applicationService.run();
 
