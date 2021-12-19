@@ -7,6 +7,8 @@ import { Logger } from "../../../contexts/shared/domain/logger";
 import { container } from "./dependency-injection";
 import Router from "koa-router";
 import { registerRoutes } from "./routes";
+import { scopePerRequest } from "./middlewares/scope-per-request.middleware";
+import { scopeLoggerPerRequest } from "./middlewares/scope-logger-per-request.middleware";
 
 export class Server {
   private koa: Koa;
@@ -28,6 +30,8 @@ export class Server {
     this.koa.use(requestId());
     this.koa.use(bodyParser());
     this.koa.use(helmet());
+    this.koa.use(scopePerRequest);
+    this.koa.use(scopeLoggerPerRequest);
 
     this.koa.use(router.middleware());
   }
