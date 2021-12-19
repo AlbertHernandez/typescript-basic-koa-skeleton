@@ -1,19 +1,20 @@
 import { Controller } from "./controller";
 import Koa from "koa";
-import { FortuneTellerPredictObtainer } from "../../../../contexts/fortune-teller/predict/application/create/fortune-teller-predict-obtainer";
+import { QueryBus } from "../../../../contexts/shared/domain/query-bus";
+import { ObtainPredictionResponse } from "../../../../contexts/fortune-teller/predict/application/create/obtain-prediction-response";
+import { ObtainPredictionQuery } from "../../../../contexts/fortune-teller/predict/application/create/obtain-prediction-query";
 
 export default class PredictionGetController implements Controller {
-  private readonly fortuneTellerPredictObtainer: FortuneTellerPredictObtainer;
+  private readonly queryBus;
 
-  constructor(dependencies: {
-    fortuneTellerPredictObtainer: FortuneTellerPredictObtainer;
-  }) {
-    this.fortuneTellerPredictObtainer =
-      dependencies.fortuneTellerPredictObtainer;
+  constructor(dependencies: { queryBus: QueryBus }) {
+    this.queryBus = dependencies.queryBus;
   }
 
   async run(ctx: Koa.Context) {
-    const prediction = await this.fortuneTellerPredictObtainer.run();
-    ctx.body = { prediction };
+    const prediction = await this.queryBus.ask<ObtainPredictionResponse>(
+      new ObtainPredictionQuery()
+    );
+    ctx.body = prediction;
   }
 }

@@ -1,4 +1,5 @@
 import { Logger } from "../../../../shared/domain/logger";
+import { ObtainPredictionResponse } from "./obtain-prediction-response";
 
 export class FortuneTellerPredictObtainer {
   private readonly logger;
@@ -9,6 +10,6 @@ export class FortuneTellerPredictObtainer {
 
   async run() {
     this.logger.info("FortuneTellerPredictObtainer");
-    return "This is a prediction";
+    return new ObtainPredictionResponse("This is a prediction");
   }
 }
