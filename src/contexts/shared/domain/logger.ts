@@ -1,6 +1,7 @@
 export interface LogMessage {
   message: string;
   context: Record<string, unknown>;
+  [key: string]: any;
 }
 
 type LogMethod = (message: LogMessage | string) => void;

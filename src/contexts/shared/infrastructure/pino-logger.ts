@@ -6,7 +6,7 @@ export class PinoLogger implements Logger {
 
   constructor(dependencies: { level?: Level } = {}) {
     this.logger = pino({
-      level: dependencies.level || "info",
+      level: dependencies.level || "debug",
       messageKey: "message",
       base: null,
     });
