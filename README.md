@@ -12,7 +12,6 @@
 ## Table of Contents
 
 * [Preparing environment to contribute](#preparing-environment)
-* [Playground](#playground)
 * [Building](#building)
 * [Testing](#testing)
 * [Linting](#linting)
