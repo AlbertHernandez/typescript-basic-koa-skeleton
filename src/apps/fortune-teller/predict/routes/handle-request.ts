@@ -1,8 +1,7 @@
 import Koa from "koa";
 import * as Awilix from "awilix";
 import { Controller } from "../controllers/controller";
-
-type Class<T> = new (...args: any[]) => T;
+import { Class } from "../../../../contexts/shared/domain/class";
 
 export const handleRequest =
   (controller: Class<Controller>) => async (ctx: Koa.Context) => {

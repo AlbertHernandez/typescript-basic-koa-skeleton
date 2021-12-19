@@ -4,6 +4,9 @@ import { ErrorHandler } from "../../../../contexts/shared/infrastructure/error-h
 import { config } from "../../../../contexts/fortune-teller/shared/infrastructure/config";
 import { InMemoryQueryBus } from "../../../../contexts/shared/infrastructure/query-bus/in-memory-query-bus";
 import { QueryHandlersInformation } from "../../../../contexts/shared/infrastructure/query-bus/query-handlers-information";
+import { ObtainPredictionQueryHandler } from "../../../../contexts/fortune-teller/predict/application/create/obtain-prediction-query-handler";
+import camelcase from "camelcase";
+import { Class } from "../../../../contexts/shared/domain/class";
 
 export const register = (container: Awilix.AwilixContainer) => {
   container.register({
@@ -15,16 +18,19 @@ export const register = (container: Awilix.AwilixContainer) => {
     }),
     errorHandler: Awilix.asClass(ErrorHandler),
     queryHandlers: Awilix.asFunction(
-      ({ parentContainer }: { parentContainer: Awilix.AwilixContainer }) =>
-        Object.keys(parentContainer.registrations)
-          .filter((dependencyName: string) => {
-            return dependencyName.includes("QueryHandler");
-          })
-          .map((dependencyName) => {
-            return parentContainer.resolve(dependencyName);
-          })
+      ({
+        parentContainer,
+        queryHandlerClassNames,
+      }: {
+        parentContainer: Awilix.AwilixContainer;
+        queryHandlerClassNames: Class<unknown>[];
+      }) =>
+        queryHandlerClassNames.map((handlerClassName) =>
+          parentContainer.resolve(camelcase(handlerClassName.name))
+        )
     ).inject((parentContainer: Awilix.AwilixContainer) => ({
       parentContainer,
+      queryHandlerClassNames: [ObtainPredictionQueryHandler],
     })),
     queryHandlersInformation: Awilix.asClass(QueryHandlersInformation),
     queryBus: Awilix.asClass(InMemoryQueryBus),
