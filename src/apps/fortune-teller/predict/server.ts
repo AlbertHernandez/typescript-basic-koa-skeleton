@@ -52,7 +52,6 @@ export class Server {
         this.logger.info(
           `Fortune Teller Backend App is running at http://localhost:${this.port} in ${env} mode`
         );
-        this.logger.info("  Press CTRL-C to stop\n");
         resolve();
       });
     });
