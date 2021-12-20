@@ -46,15 +46,11 @@ export class Server {
   }
 
   async listen(): Promise<void> {
-    return new Promise((resolve) => {
-      this.httpServer = this.koa.listen(this.port, () => {
-        const env = config.get("env");
-        this.logger.info(
-          `Fortune Teller Backend App is running at http://localhost:${this.port} in ${env} mode`
-        );
-        resolve();
-      });
-    });
+    this.httpServer = await this.koa.listen(this.port);
+    const env = config.get("env");
+    this.logger.info(
+      `Fortune Teller Backend App is running at http://localhost:${this.port} in ${env} mode`
+    );
   }
 
   async stop(): Promise<void> {
