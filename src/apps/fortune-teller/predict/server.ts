@@ -23,7 +23,7 @@ export class Server {
 
   constructor(dependencies: { port: number }) {
     this.logger = container.resolve<Logger>("logger");
-    this.port = Number(dependencies.port);
+    this.port = dependencies.port;
     this.koa = new Koa();
 
     const router = new Router({

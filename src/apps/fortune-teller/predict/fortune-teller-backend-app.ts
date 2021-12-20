@@ -1,12 +1,12 @@
+import { config } from "../../../contexts/fortune-teller/shared/infrastructure/config";
 import { Server } from "./server";
 
 export class FortuneTellerBackendApp {
   private server?: Server;
 
   async start() {
-    const port = process.env.PORT || "3000";
     this.server = new Server({
-      port: Number(port),
+      port: config.get("server.port"),
     });
     return this.server.listen();
   }

@@ -4,6 +4,14 @@ import convict from "convict";
 dotenv.config();
 
 const config = convict({
+  server: {
+    port: {
+      doc: "Port of the server",
+      format: "Number",
+      default: 3000,
+      env: "PORT",
+    },
+  },
   env: {
     doc: "The application environment.",
     format: ["production", "beta", "test", "development"],
