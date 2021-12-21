@@ -1,6 +1,6 @@
 import { QueryHandler } from "../../domain/query-handler";
 import { Query } from "../../domain/query";
-import { Response } from "../../domain/Response";
+import { Response } from "../../domain/response";
 import { QueryNotRegisteredError } from "../../domain/query-not-registered-error";
 
 export class QueryHandlersInformation {
