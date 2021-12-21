@@ -14,6 +14,8 @@ import { errorHandler } from "./middlewares/error-handler.middleware";
 import { logRequestResponse } from "./middlewares/log-request-response.middleware";
 import { registerRequestContext } from "./middlewares/register-request-context.middleware";
 import { config } from "../../../contexts/fortune-teller/shared/infrastructure/config";
+import { authentication } from "./middlewares/authentication.middleware";
+import { getApiUsers } from "./get-api-users";
 
 export class Server {
   private koa: Koa;
@@ -40,6 +42,11 @@ export class Server {
     this.koa.use(scopePerRequest);
     this.koa.use(registerRequestContext);
     this.koa.use(scopeLoggerPerRequest);
+    this.koa.use(
+      authentication({
+        apiUsers: getApiUsers(),
+      })
+    );
     this.koa.use(logRequestResponse);
 
     this.koa.use(router.middleware());

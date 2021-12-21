@@ -11,6 +11,16 @@ const config = convict({
       default: 3000,
       env: "PORT",
     },
+    user: {
+      generic: {
+        apiKey: {
+          doc: "Api Key of the generic user",
+          format: "String",
+          env: "GENERIC_USER_API_KEY",
+          default: "",
+        },
+      },
+    },
   },
   env: {
     doc: "The application environment.",
