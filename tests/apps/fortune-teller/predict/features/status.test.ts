@@ -1,7 +1,7 @@
 import httpStatus from "http-status";
 import { appTestServer } from "../../helpers/app-test-server";
 
-const HEALTH_ENDPOINT = "/api/v1/health";
+const HEALTH_ENDPOINT = "/health";
 
 describe("Api Status", () => {
   beforeAll(async () => {

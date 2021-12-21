@@ -1,5 +1,6 @@
 import Koa from "koa";
 import http from "http";
+import httpStatus from "http-status";
 import requestId from "koa-requestid";
 import bodyParser from "koa-bodyparser";
 import helmet from "koa-helmet";
@@ -28,6 +29,8 @@ export class Server {
     this.port = dependencies.port;
     this.koa = new Koa();
 
+    this.configureRoutesWithoutMiddlewares();
+
     const router = new Router({
       prefix: "/api/v1",
     });
@@ -50,6 +53,22 @@ export class Server {
     this.koa.use(logRequestResponse);
 
     this.koa.use(router.middleware());
+  }
+
+  private configureRoutesWithoutMiddlewares() {
+    this.configureHealthRouter();
+  }
+
+  private configureHealthRouter() {
+    const healthRouter = new Router({
+      prefix: "/health",
+    });
+
+    healthRouter.get("/", (ctx) => {
+      ctx.status = httpStatus.OK;
+    });
+
+    this.koa.use(healthRouter.middleware());
   }
 
   async listen(): Promise<void> {
