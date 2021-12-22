@@ -39,30 +39,23 @@ function setRequestPart(
   }
 }
 
-export const schemaValidationMiddleware = (schemas: SchemasConfig) => {
-  return async function schemaValidationMiddleware(
-    ctx: Koa.Context,
-    next: Koa.Next
-  ) {
-    Object.entries(schemas).forEach(([requestPart, schema]) => {
-      const requestPartType = requestPart as RequestValues;
-      if (schema != null) {
-        const requestPart = getRequestPart(ctx, requestPartType);
+export const validateSchema = (schemas: SchemasConfig, ctx: Koa.Context) => {
+  Object.entries(schemas).forEach(([requestPart, schema]) => {
+    const requestPartType = requestPart as RequestValues;
+    if (schema != null) {
+      const requestPart = getRequestPart(ctx, requestPartType);
 
-        const { error, value } = schema.validate(requestPart, {
-          abortEarly: false,
-        });
+      const { error, value } = schema.validate(requestPart, {
+        abortEarly: false,
+      });
 
-        if (error != null) {
-          throw new BadRequestError(error.message);
-        }
-
-        if (Object.values(RequestValues).includes(requestPartType)) {
-          setRequestPart(ctx, requestPartType, value);
-        }
+      if (error != null) {
+        throw new BadRequestError(error.message);
       }
-    });
 
-    await next();
-  };
+      if (Object.values(RequestValues).includes(requestPartType)) {
+        setRequestPart(ctx, requestPartType, value);
+      }
+    }
+  });
 };
