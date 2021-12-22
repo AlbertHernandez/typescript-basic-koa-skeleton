@@ -3,9 +3,9 @@ import Joi from "joi";
 import Koa from "koa";
 import { QueryBus } from "../../../../contexts/shared/domain/query-bus";
 import { HttpResponse } from "../models/http-response";
-import { ObtainAnswerQuery } from "../../../../contexts/fortune-teller/predict/application/get-answer/obtain-answer-query";
-import { ObtainAnswerResponse } from "../../../../contexts/fortune-teller/predict/application/get-answer/obtain-answer-response";
 import { SchemasConfig } from "../middlewares/schema-validation.middleware";
+import { ObtainAnswerResponse } from "../../../../contexts/fortune-teller/answer/application/get-answer/obtain-answer-response";
+import { ObtainAnswerQuery } from "../../../../contexts/fortune-teller/answer/application/get-answer/obtain-answer-query";
 
 export default class AnswerGetController implements Controller {
   private readonly queryBus;

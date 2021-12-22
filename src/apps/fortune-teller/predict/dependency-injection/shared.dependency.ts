@@ -7,7 +7,7 @@ import { QueryHandlersInformation } from "../../../../contexts/shared/infrastruc
 import { ObtainPredictionQueryHandler } from "../../../../contexts/fortune-teller/predict/application/create/obtain-prediction-query-handler";
 import camelcase from "camelcase";
 import { Class } from "../../../../contexts/shared/domain/class";
-import { ObtainAnswerQueryHandler } from "../../../../contexts/fortune-teller/predict/application/get-answer/obtain-answer-query-handler";
+import { ObtainAnswerQueryHandler } from "../../../../contexts/fortune-teller/answer/application/get-answer/obtain-answer-query-handler";
 
 export const register = (container: Awilix.AwilixContainer) => {
   container.register({
