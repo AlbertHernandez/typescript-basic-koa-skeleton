@@ -3,7 +3,7 @@ import { ObtainAnswerQuery } from "./obtain-answer-query";
 import { ObtainAnswerResponse } from "./obtain-answer-response";
 import { FortuneTellerAnswerObtainer } from "./fortune-teller-answer-obtainer";
 import { Query } from "../../../../shared/domain/query";
-import { Question } from "../../../../shared/domain/question";
+import { Question } from "../../domain/question";
 
 export class ObtainAnswerQueryHandler
   implements QueryHandler<Query, ObtainAnswerResponse>

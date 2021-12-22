@@ -1,7 +1,7 @@
 import { ObtainAnswerResponse } from "./obtain-answer-response";
-import { YesAnswer } from "../../../../shared/domain/yes-answer";
-import { NoAnswer } from "../../../../shared/domain/no-answer";
-import { Question } from "../../../../shared/domain/question";
+import { YesAnswer } from "../../domain/yes-answer";
+import { NoAnswer } from "../../domain/no-answer";
+import { Question } from "../../domain/question";
 
 export class FortuneTellerAnswerObtainer {
   async run(question: Question): Promise<ObtainAnswerResponse> {

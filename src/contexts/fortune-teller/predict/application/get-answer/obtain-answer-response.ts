@@ -1,4 +1,4 @@
-import { Answer } from "../../../../shared/domain/answer";
+import { Answer } from "../../domain/answer";
 import { Response } from "../../../../shared/domain/response";
 
 export class ObtainAnswerResponse extends Response {
