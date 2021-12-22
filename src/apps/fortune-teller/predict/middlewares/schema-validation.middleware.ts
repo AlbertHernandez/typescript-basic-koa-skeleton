@@ -9,7 +9,7 @@ enum RequestValues {
   Params = "params",
 }
 
-interface SchemasConfig {
+export interface SchemasConfig {
   body?: Joi.ObjectSchema;
   query?: Joi.ObjectSchema;
   headers?: Joi.ObjectSchema;

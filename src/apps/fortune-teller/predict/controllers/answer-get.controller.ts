@@ -1,15 +1,25 @@
 import { Controller } from "./controller";
+import Joi from "joi";
 import Koa from "koa";
 import { QueryBus } from "../../../../contexts/shared/domain/query-bus";
 import { HttpResponse } from "../models/http-response";
 import { ObtainAnswerQuery } from "../../../../contexts/fortune-teller/predict/application/get-answer/obtain-answer-query";
 import { ObtainAnswerResponse } from "../../../../contexts/fortune-teller/predict/application/get-answer/obtain-answer-response";
+import { SchemasConfig } from "../middlewares/schema-validation.middleware";
 
 export default class AnswerGetController implements Controller {
   private readonly queryBus;
 
   constructor(dependencies: { queryBus: QueryBus }) {
     this.queryBus = dependencies.queryBus;
+  }
+
+  static schema(): SchemasConfig {
+    return {
+      query: Joi.object({
+        question: Joi.string().required(),
+      }),
+    };
   }
 
   async run(ctx: Koa.Context) {

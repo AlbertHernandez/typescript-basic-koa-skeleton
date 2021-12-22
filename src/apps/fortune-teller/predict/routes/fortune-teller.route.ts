@@ -5,7 +5,6 @@ import { authorization } from "../middlewares/authorization.middleware";
 import { UserType } from "../models/api-user";
 import AnswerGetController from "../controllers/answer-get.controller";
 import { schemaValidationMiddleware } from "../middlewares/schema-validation.middleware";
-import { answerGetSchema } from "../schemas/answer-get-schema";
 
 export const register = (router: Router) => {
   router.get(
@@ -16,7 +15,7 @@ export const register = (router: Router) => {
   router.get(
     "/fortune-teller/answer",
     authorization({ allowedUserTypes: [UserType.Api] }),
-    schemaValidationMiddleware(answerGetSchema),
+    schemaValidationMiddleware(AnswerGetController.schema()),
     handleRequest(AnswerGetController)
   );
 };
