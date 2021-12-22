@@ -8,5 +8,14 @@ export const handleRequest =
     const controllerName = controller.name;
     const scopedContainer: Awilix.AwilixContainer = ctx.state.container;
     const instance = scopedContainer.resolve<Controller>(controllerName);
-    await instance.run(ctx);
+    const response = await instance.run(ctx);
+    if (response.data) {
+      ctx.body = {
+        data: response.data,
+      };
+    }
+
+    if (response.statusCode) {
+      ctx.status = response.statusCode;
+    }
   };
