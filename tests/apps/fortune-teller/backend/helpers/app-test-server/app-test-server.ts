@@ -1,5 +1,5 @@
 import request from "supertest";
-import { FortuneTellerBackendApp } from "../../../../../src/apps/fortune-teller/predict/fortune-teller-backend-app";
+import { FortuneTellerBackendApp } from "../../../../../../src/apps/fortune-teller/backend/fortune-teller-backend-app";
 
 export class AppTestServer {
   private application?: FortuneTellerBackendApp;

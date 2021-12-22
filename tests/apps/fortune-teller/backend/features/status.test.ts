@@ -1,5 +1,5 @@
 import httpStatus from "http-status";
-import { appTestServer } from "../../helpers/app-test-server";
+import { appTestServer } from "../helpers/app-test-server";
 
 const HEALTH_ENDPOINT = "/health";
 
