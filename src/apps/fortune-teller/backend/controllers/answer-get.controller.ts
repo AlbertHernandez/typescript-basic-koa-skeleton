@@ -30,7 +30,7 @@ export default class AnswerGetController implements Controller {
 
     return new HttpResponse({
       data: {
-        answer: answerResponse.answer.value,
+        answer: answerResponse.answer,
       },
     });
   }

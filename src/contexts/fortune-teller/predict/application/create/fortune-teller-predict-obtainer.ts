@@ -1,5 +1,5 @@
 import { Logger } from "../../../../shared/domain/logger";
-import { ObtainPredictionResponse } from "./obtain-prediction-response";
+import { Prediction } from "../../domain/prediction";
 
 export class FortuneTellerPredictObtainer {
   private readonly logger;
@@ -8,8 +8,8 @@ export class FortuneTellerPredictObtainer {
     this.logger = dependencies.logger;
   }
 
-  async run() {
+  async run(): Promise<Prediction> {
     this.logger.info("FortuneTellerPredictObtainer");
-    return new ObtainPredictionResponse("This is a prediction");
+    return new Prediction("This is a prediction");
   }
 }

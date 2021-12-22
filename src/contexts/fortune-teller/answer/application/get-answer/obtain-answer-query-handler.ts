@@ -21,8 +21,10 @@ export class ObtainAnswerQueryHandler
   }
 
   async handle(query: ObtainAnswerQuery): Promise<ObtainAnswerResponse> {
-    return await this.fortuneTellerAnswerObtainer.run(
+    const answer = await this.fortuneTellerAnswerObtainer.run(
       new Question(query.question)
     );
+
+    return new ObtainAnswerResponse(answer.value);
   }
 }

@@ -8,17 +8,17 @@ describe("FortuneTellerAnswerObtainer", () => {
     const applicationService = FortuneTellerAnswerObtainerMother.create();
 
     const question = QuestionCreator.withLessThanFiveCharacters();
-    const response = await applicationService.run(question);
+    const answer = await applicationService.run(question);
 
-    expect(response.answer).toBeInstanceOf(YesAnswer);
+    expect(answer).toBeInstanceOf(YesAnswer);
   });
 
   it("when the question has more than 4 characters should return No", async () => {
     const applicationService = FortuneTellerAnswerObtainerMother.create();
 
     const question = QuestionCreator.withMoreThanFourCharacters();
-    const response = await applicationService.run(question);
+    const answer = await applicationService.run(question);
 
-    expect(response.answer).toBeInstanceOf(NoAnswer);
+    expect(answer).toBeInstanceOf(NoAnswer);
   });
 });

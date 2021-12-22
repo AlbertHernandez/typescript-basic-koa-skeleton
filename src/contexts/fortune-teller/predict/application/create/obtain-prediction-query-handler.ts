@@ -20,6 +20,7 @@ export class ObtainPredictionQueryHandler
   }
 
   async handle(): Promise<ObtainPredictionResponse> {
-    return await this.fortuneTellerPredictObtainer.run();
+    const prediction = await this.fortuneTellerPredictObtainer.run();
+    return new ObtainPredictionResponse(prediction.value);
   }
 }

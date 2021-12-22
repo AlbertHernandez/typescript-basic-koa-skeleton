@@ -13,12 +13,13 @@ export default class PredictionGetController implements Controller {
   }
 
   async run(ctx: Koa.Context) {
-    const prediction = await this.queryBus.ask<ObtainPredictionResponse>(
-      new ObtainPredictionQuery()
-    );
+    const predictionResponse =
+      await this.queryBus.ask<ObtainPredictionResponse>(
+        new ObtainPredictionQuery()
+      );
 
     return new HttpResponse({
-      data: prediction,
+      data: predictionResponse.prediction,
     });
   }
 }
