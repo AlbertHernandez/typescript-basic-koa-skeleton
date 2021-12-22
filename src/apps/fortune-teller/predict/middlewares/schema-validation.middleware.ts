@@ -49,7 +49,9 @@ export const schemaValidationMiddleware = (schemas: SchemasConfig) => {
       if (schema != null) {
         const requestPart = getRequestPart(ctx, requestPartType);
 
-        const { error, value } = schema.validate(requestPart);
+        const { error, value } = schema.validate(requestPart, {
+          abortEarly: false,
+        });
 
         if (error != null) {
           throw new BadRequestError(error.message);
